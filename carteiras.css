@@ -1,0 +1,106 @@
+* {								/*Mudando algumas configurações que podem dar conflito*/
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	text-decoration: none;
+}
+.logo{
+  height: 50px;
+  float:right;
+}
+.carteira {
+  height: 100px;
+}
+header{
+	background-size: 100vw auto;
+	text-align: center;
+}
+ul { /*O ul da Carteira 1*/
+  list-style-type: none;
+  overflow: hidden;
+  background-color: #0A8399;
+}
+li {
+  float: left;
+}
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+li a:hover { /*O il hover da Carteira 1*/
+  background-color: #096E80;
+}
+/* li a:hover {
+  background-color: #096E80;
+}
+li a:hover {
+  background-color: #096E80;
+} */
+h1{ /*Título da Carteira 1*/
+  text-align: center;
+  font-size: 50px;
+  color: #064D59;
+  padding-top: 50px;
+  padding-bottom: 20px;
+}
+body{
+  background-color: #D0E4D5;
+}
+div{
+  padding: 20px;
+}
+h2{
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 40px;
+  color: #064D59
+}
+table{
+  border: 1px solid #0A8399;
+	margin-left:auto;
+	margin-right:auto;
+}
+th{
+  text-align: center;
+  height: 40px;
+  width: 200px;
+  vertical-align: center;
+  background-color: #0A8399;
+  color: white;
+}
+td{
+  text-align: center;
+  height: 30px;
+  width: 150px;
+  vertical-align: center;
+  background-color: white
+}
+tr:hover {
+  color: #A0B4A5;
+}
+.tables {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.tabelas {
+  margin-top: 5%;
+	display: flex;
+	flex-direction: column;
+  weight: 100px
+}
+.ativo {
+  background-color: #096E80;
+}
+footer{
+  background-color: #0A8399;
+  text-align: center;
+	padding: 15px;
+  height: 50px;
+	box-sizing: border-box;
+  color: #D0E4D5;
+  font-size: 25px;
+}
