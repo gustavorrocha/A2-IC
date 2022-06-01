@@ -3,6 +3,8 @@ from random import random
 import yfinance
 from openpyxl import Workbook
 from random import randrange
+from openpyxl.styles import Alignment, Font, Border, Side, PatternFill
+from openpyxl.utils import get_column_letter
 
 # ------------------------------------------------------------- #
 # "Rascunho" para criar uma carteira em um modelo específico:
@@ -54,27 +56,48 @@ for tipo in carteira:
 # Criação do arquivo Excel, com os dados da carteira:
 # ------------------------------------------------------------- #
 
-book = Workbook() # Inicia um workbook no Excel
-sheet = book.active # Cria uma worksheet no workbook criado
-
-
 # Função que insere os dados de uma lista em uma planilha, com cada elemento sendo inserido em uma linha diferente.
-def inserir_dados(planilha, lista, linha_inicial, coluna):
+def inserir_dados(planilha, lista, linha_inicial, coluna, titulo = False):
     for linha, dado in enumerate(lista, linha_inicial):
-        planilha.cell(row = linha, column = coluna).value = dado
+        celula = planilha.cell(row = linha, column = coluna) # Armazena a célula em uma variável
+        celula.value = dado # Insere o valor do dado na célula.
+        celula.border = Border(top = Side(style='thin'), bottom = Side(style='thin')) # Insere borda superior e inferior na célula.
+        if titulo: 
+            celula.font = Font(bold = True) # Caso seja um título, da linha, coloca a fonte em negrito
+    if titulo:
+        planilha.column_dimensions[get_column_letter(coluna)].width = 15 # Altera a largura da coluna dos títulos.
     return linha # Retorna o número de linhas que foram inseridas pela função.
 
 
+# Função que insere um título, com uma formatação específica, em uma planilha.
+def criar_titulo(planilha, nome, linha_i, coluna_i, coluna_f):
+    titulo = planilha.cell(row = linha_i, column = coluna_i) # Armazena a célula em uma variável
+    titulo.value = nome # Insere o valor da célula de título.
+    titulo.fill = PatternFill("solid", fgColor = "EBF1DE") # Altera a cor do preenchimento da célula.
+    titulo.font = Font(bold = True, size = 14) # Aumenta a fonte e a coloca em negrito.
+    titulo.alignment = Alignment(horizontal="center") # Centraliza os dados da célula.
+    planilha.merge_cells(start_row = linha_i, start_column = coluna_i, end_row = linha_i, end_column = coluna_f) # Mesclar as células.
+
+
+# Função que salva um planilha do excel como teste.
+def salvar_arquivo_teste(workbook, max):
+    nome_save = f"teste{str(randrange(max))}.xlsx" # Gera um nome para o arquivo Excel.
+    workbook.save("./testes/" + nome_save) # Salva o arquivo na pasta de testes.
+    print(f"Arquivo {nome_save} criado") # Imprime o nome do arquivo criado.
+
+
+book = Workbook() # Inicia um workbook no Excel
+tabelas = book.active # Cria uma worksheet no workbook criado
+
 linha_tabela = 2 # Cria uma variável para armazenar a linha em que a inserção de dados começará.
 coluna_tabela = 2 # Cria uma variável para armazenar a coluna em que a inserção de dados começará.
+tabelas.sheet_view.showGridLines = False
 
 for tipo in carteira:
-    sheet.cell(row = linha_tabela, column = coluna_tabela + 2).value = tipo # Insere o título do tipo de ativo na tabela.
-    num_dados = inserir_dados(sheet, carteira[tipo][0], linha_tabela + 1, coluna_tabela) # Insere os títulos das linhas (utilizando o primeiro ativo do tipo).
-    for num_ativo, ativo in enumerate(carteira[tipo], coluna_tabela + 2): # Loop que insere todos os dados de cada ativo na tabela.
-        inserir_dados(sheet, ativo.values(), linha_tabela + 1, num_ativo)
+    for num_ativo, ativo in enumerate(carteira[tipo], coluna_tabela + 1): # Loop que insere todos os dados de cada ativo na tabela.
+        inserir_dados(tabelas, ativo.values(), linha_tabela + 1, num_ativo)
+    criar_titulo(tabelas, tipo, linha_tabela, coluna_tabela, num_ativo) # Insere o título do tipo de ativo na tabela.    
+    num_dados = inserir_dados(tabelas, carteira[tipo][0], linha_tabela + 1, coluna_tabela, titulo = True) # Insere os títulos das linhas (utilizando o primeiro ativo do tipo).
     linha_tabela += num_dados + 1 # Altera a variável linha, para criar um espaço entre as tabelas de cada tipo.
 
-nome_save = f"teste{str(randrange(1000))}.xlsx" # Gera um nome para o arquivo Excel.
-book.save("./testes/" + nome_save) # Salva o arquivo na pasta de testes.
-print(f"Arquivo {nome_save} criado") # Imprime o nome do arquivo criado.
+salvar_arquivo_teste(book, 1000) # Salva o arquivo teste com um número aleatório de 1 a 1000.
