@@ -1,106 +1,193 @@
-* {								/*Mudando algumas configurações que podem dar conflito*/
+/*Mudando algumas configurações que podem dar conflito*/
+* {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
 	text-decoration: none;
+	text-align: center;
 }
-.logo{
+
+#logo {
   height: 50px;
   float:right;
 }
-.carteira {
+
+#carteira_imagem {
   height: 100px;
 }
-header{
-	background-size: 100vw auto;
-	text-align: center;
-}
-ul { /*O ul da Carteira 1*/
-  list-style-type: none;
+
+/* Estilizando o cabeçalho */
+ul {
+	list-style-type: none;
   overflow: hidden;
-  background-color: #0A8399;
 }
+
+#cabecalho1 { /* Cria o cabeçalho da Carteira 1 */
+  background-color: #096E80; /* Cor do plano de fundo do cabeçalho */
+}
+#cabecalho2 { /* Cria o cabeçalho da Carteira 2 */
+  background-color: #348037; /* Cor do plano de fundo do cabeçalho */
+}
+#cabecalho3 { /* Cria o cabeçalho da Carteira 3 */
+  background-color: #803336; /* Cor do plano de fundo do cabeçalho */
+}
+
 li {
-  float: left;
+	float: left;
 }
+
 li a {
-  display: block;
+	display: block;
   color: white;
-  text-align: center;
   padding: 14px 16px;
-  text-decoration: none;
 }
-li a:hover { /*O il hover da Carteira 1*/
-  background-color: #096E80;
+
+/* Estilização para mudar de cor quando o cursor passar por cima dos itens do cabeçalho */
+.carteira_cabecalho1:hover {
+  background-color: #0A8399; /* Cor da Carteira 1 */
 }
-/* li a:hover {
-  background-color: #096E80;
+.carteira_cabecalho2:hover {
+  background-color: #62CC6C; /* Cor da Carteira 2 */
 }
-li a:hover {
-  background-color: #096E80;
-} */
-h1{ /*Título da Carteira 1*/
-  text-align: center;
-  font-size: 50px;
-  color: #064D59;
-  padding-top: 50px;
+.carteira_cabecalho3:hover {
+  background-color: #CC5256; /* Cor da Carteira 3 */
+}
+
+/* Estilização para a cor da Carteira em vizualização estar destacada */
+.ativo1 {
+  background-color: #0A8399; /* Cor do plano de fundo destacado da Carteira 1 */
+}
+.ativo2 {
+  background-color: #62CC6C; /* Cor do plano de fundo destacado da Carteira 2 */
+}
+.ativo3 {
+  background-color: #CC5256; /* Cor do plano de fundo destacado da Carteira 3 */
+}
+
+/* Estilizando o título das Carteiras */
+h1{
+	font-size: 50px;
+	padding-top: 50px;
   padding-bottom: 20px;
 }
-body{
-  background-color: #D0E4D5;
+#titulo1 {
+  color: #096E80; /* Cor do título da Carteira 1 */
 }
-div{
-  padding: 20px;
+#titulo2 {
+  color: #348037; /* Cor do título da Carteira 2 */
 }
-h2{
-  text-align: center;
-  font-size: 32px;
-  margin-bottom: 40px;
-  color: #064D59
+#titulo3 {
+  color: #803336; /* Cor do título da Carteira 3 */
 }
-table{
-  border: 1px solid #0A8399;
-	margin-left:auto;
-	margin-right:auto;
+
+/* Cor do plano de fundo */
+#fundo1{
+  background-color: #E0F4E5;
 }
-th{
-  text-align: center;
-  height: 40px;
-  width: 200px;
-  vertical-align: center;
-  background-color: #0A8399;
-  color: white;
+#fundo2{
+  background-color: #E7F5DD;
 }
-td{
-  text-align: center;
-  height: 30px;
-  width: 150px;
-  vertical-align: center;
-  background-color: white
+#fundo3{
+  background-color: #FFF1EF;
 }
-tr:hover {
-  color: #A0B4A5;
-}
+
 .tables {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
 }
+
 .tabelas {
   margin-top: 5%;
 	display: flex;
 	flex-direction: column;
   weight: 100px
 }
-.ativo {
-  background-color: #096E80;
+
+div{
+  padding: 20px;
 }
+
+/* Estilizando os subtítulos das Carteiras */
+h2{
+  font-size: 32px;
+  margin-bottom: 40px;
+}
+.subtitulo1{
+	color: #096E80 /* Cor dos subtítulos da Carteira 1 */
+}
+.subtitulo2{
+	color: #348037 /* Cor dos subtítulos da Carteira 2 */
+}
+.subtitulo3{
+	color: #803336 /* Cor dos subtítulos da Carteira 3 */
+}
+
+/* Estilizando as tabelas das Carteiras */
+table{
+	margin-left:auto;
+	margin-right:auto;
+}
+.borda1{
+	border: 1px solid #096E80; /* Cor da borda da Carteira 1 */
+}
+.borda2{
+	border: 1px solid #348037; /* Cor da borda da Carteira 2 */
+}
+.borda3{
+	border: 1px solid #803336; /* Cor da borda da Carteira 3 */
+}
+
+/* Estilizando os cabeçalhos das tabelas das Carteiras */
+th{
+  height: 40px;
+  width: 200px;
+  vertical-align: center;
+  color: white;
+}
+.cabecalhotabela1{
+	background-color: #096E80; /* Cor do plano de fundo da Carteira 1 */
+}
+.cabecalhotabela2{
+	background-color: #348037; /* Cor do plano de fundo da Carteira 2 */
+}
+.cabecalhotabela3{
+	background-color: #803336; /* Cor do plano de fundo da Carteira 3 */
+}
+
+td{
+  height: 30px;
+  width: 150px;
+  vertical-align: center;
+  background-color: white
+}
+
+/* Estilização para as palavras mudarem de cor quando o cursor passar por cima das linhas das tabelas */
+.destaquetabela1:hover {
+  color: #A0B4A5; /* Cor das palavras destacadas da Carteira 1 */
+}
+.destaquetabela2:hover {
+  color: #A5DDA8; /* Cor das palavras destacadas da Carteira 2 */
+}
+.destaquetabela3:hover {
+  color: #F5B3B3; /* Cor das palavras destacadas da Carteira 3 */
+}
+
 footer{
-  background-color: #0A8399;
-  text-align: center;
 	padding: 15px;
   height: 50px;
 	box-sizing: border-box;
-  color: #D0E4D5;
   font-size: 25px;
+}
+#rodape1{
+	background-color: #096E80;
+	color: #D0E4D5;
+}
+#rodape2{
+	background-color: #348037;
+	color: #D4FCC5;
+}
+#rodape3{
+	background-color: #803336;
+	color: #FFF1EF;
 }
