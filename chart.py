@@ -24,20 +24,35 @@ for cell in ws.iter_rows(min_row=13,max_row=13,min_col=3,max_col=5,values_only=T
 ws_2.append(tipos)
 ws_2.append(valores)
 
-#O código a seguir é o esqueleto de um gráfico.
+#O código a seguir é o esqueleto de um gráfico de barras.
+chart1 = BarChart()
+chart1.type = "col"
+chart1.style = 10
+chart1.title = "Valor dos ativos"
+chart1.y_axis.title = "Preço Total"
+chart1.x_axis.title = "Ativos"
+
+data = Reference(ws_2, min_col=1, min_row=1, max_row=2, max_col=8)
+cats = Reference(ws_2, min_col=1, min_row=2, max_row=2, max_col=8)
+chart1.add_data(data, titles_from_data=True)
+chart1.set_categories(cats)
+chart1.shape = 4
+ws.add_chart(chart1, "I2")
+
+#Agora, um gráfico a partir dos mesmos dados, mas de barras empilhadas.
 chart2 = BarChart()
 chart2.type = "col"
 chart2.style = 10
+chart2.grouping = "stacked"
+chart2.overlap=100
 chart2.title = "Valor dos ativos"
 chart2.y_axis.title = "Preço Total"
 chart2.x_axis.title = "Ativos"
 
 data = Reference(ws_2, min_col=1, min_row=1, max_row=2, max_col=8)
-cats = Reference(ws_2, min_col=1, min_row=2, max_row=2, max_col=8)
 chart2.add_data(data, titles_from_data=True)
-chart2.set_categories(cats)
 chart2.shape = 4
-ws.add_chart(chart2, "I2")
+ws.add_chart(chart2, "I18")
 
 #Uma cópia do arquivo com as modificações feitas é criada.
 wb.save("bar.xlsx")
