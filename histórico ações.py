@@ -33,7 +33,7 @@ jbs = yf.Ticker("JBSS3.SA")
 jbs_historical = jbs.history(start = "2020-01-01", end = "2022-05-30")
 print("JBS: \n", jbs_historical, "\n")
 
-mrv = yf.Ticker("MRVE3.S")
+mrv = yf.Ticker("MRVE3.SA")
 mrv_historical = mrv.history(start = "2020-01-01", end = "2022-05-30")
 print("MRV: \n", mrv_historical, "\n")
 
