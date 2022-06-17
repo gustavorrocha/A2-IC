@@ -10,21 +10,29 @@ def webscraping(url):
     # Facilitando a compreensão do html.
     pagina = BeautifulSoup(response.text, 'lxml')
 
-    # Criando dicionários para receber os dados da carteira, especificando se é ação
+    # Criando duas listas e um dicionário para receber os dados da carteira, especificando se é ação
     # ou moeda.
-    carteira = {"Ações":[], "Moedas":[]}
-    acoes = {}
-    moedas = {}
+    carteira = {}
+    acoes = []
+    moedas = []
 
     # Retirando os dados das ações e das moedas da carteira.
-    for acao in pagina.select(".acao tr"):
-        action = acao.select("td")
-        if len(action) > 0:
-            acoes[acao.select("td")[0].text] = acao.select("td")[1].text
-    carteira["Ações"].append(acoes)
-    for moeda in pagina.select(".moeda tr"):
-        action = moeda.select("td")
-        if len(action) > 0:
-            moedas[moeda.select("td")[0].text] = moeda.select("td")[1].text
-    carteira["Moedas"].append(moedas)
+    for acao in pagina.select(".acao tr"):  # Selecioando os tr's da classe acao no div para retirar somente as ações.
+        ativo = acao.select("td")
+        if len(ativo) > 0:
+            dic_acoes = {}  # Criando um dicionário para receber as ações.
+            dic_acoes["Nome"] = acao.select("td")[0].text  # Criando uma chave com o nome da ação.
+            dic_acoes["Quantidade"] = acao.select("td")[1].text  # Criando uma chave com a quantidade de ações.
+            acoes.append(dic_acoes)  # Adicionando as ações da carteira na lista de ações.
+    carteira["Ações"] = acoes  # Adicionando a lista de ações no dicionário da carteira.
+
+    for moeda in pagina.select(".moeda tr"):  # Selecioando os tr's dentro da classe moeda no div para retirar somente as moedas.
+        ativo = moeda.select("td")
+        if len(ativo) > 0:
+            dic_moedas = {}  # Criando um dicionário para receber as moedas.
+            dic_moedas["Nome"] = moeda.select("td")[0].text  # Criando uma chave com o nome da moeda.
+            dic_moedas["Quantidade"] = moeda.select("td")[1].text  # Criando uma chave com a quantidade de dinheiro.
+            moedas.append(dic_moedas)  # Adicionando as moedas da carteira na lista de moedas.
+    carteira["Moedas"] = moedas  # Adicionando a lista de moedas no dicionário da carteira.
+
     return carteira
