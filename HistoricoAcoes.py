@@ -11,7 +11,6 @@ for papeis in carteira: #pegar ações e moedas
        acoesemoedas.append(acoesoumoeda["Nome"]) #lista com todos os nomes de ações e moedas
 dados = yq.Ticker(acoesemoedas).price
 
-print(dados)
 currencies = {}
 for acao in carteira["Ações"]:
     nomeacao = acao["Nome"]
@@ -21,15 +20,30 @@ for acao in carteira["Ações"]:
     
 #conjunto para eliminar repetições
 currenciesunica = set(currencies.values())
-print(currenciesunica)
+
 
 #obter dados das currencies
-dadoscurrency = yq.Ticker(currenciesunica)
-print(dadoscurrency.price)
+dadoscurrency = yq.Ticker(currenciesunica).price
+for acoes in currencies:
+    moeda =  currencies[acoes]
+    if moeda == "BRLBRL=X":
+        valormoeda = 1
+    else:
+        valormoeda = dadoscurrency[moeda]["regularMarketPrice"]
+    currencies[acoes] = valormoeda
+
 
 #dado da ação e multiplicar pela currency
 for papeis in carteira:
     for acoesoumoeda in carteira[papeis]:
         nome = acoesoumoeda["Nome"]
-        preco = dados[nome]["regularMarketPrice"]
-        print(preco)
+        if nome == "BRL=X":
+            preco = 1
+        else:
+            preco = dados[nome]["regularMarketPrice"]
+        if papeis == "Ações":
+            preco *= currencies[nome]
+        acoesoumoeda["Preço"] = round(preco,2) #arredondar o preço em duas casas decimais
+        precototal = preco * acoesoumoeda["Quantidade"]
+        acoesoumoeda["Preço Total"] = round(precototal,2)
+
