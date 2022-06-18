@@ -44,6 +44,7 @@ for papeis in carteira:
         if papeis == "Ações":
             preco *= currencies[nome]
         acoesoumoeda["Preço"] = round(preco,2) #arredondar o preço em duas casas decimais
+        acoesoumoeda["Quantidade"] = float(acoesoumoeda["Quantidade"])
         precototal = preco * acoesoumoeda["Quantidade"]
         acoesoumoeda["Preço Total"] = round(precototal,2)
 
