@@ -1,25 +1,25 @@
 /*Mudando algumas configurações que podem dar conflito*/
 * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	text-decoration: none;
-	text-align: center;
+	margin: 0; /* Margem */
+	padding: 0; /* Preenchimento */
+	box-sizing: border-box; /* Alteração da propriedade padrão da box model, nessa a largura e altura incluem o padding, mas não a margem */
+	text-decoration: none; /* Sem decoração no texto */
+	text-align: center; /* Texto no centro */
 }
 
 #logo {
-  height: 50px;
-  float:right;
+  height: 50px; /* Altura da logo */
+  float:right; /* Posição da logo */
 }
 
 #carteira_imagem {
-  height: 100px;
+  height: 100px; /* Altura da imagem */
 }
 
 /* Estilizando o cabeçalho */
 ul {
-	list-style-type: none;
-  overflow: hidden;
+  list-style-type: none; /* Estilização da lista */
+  overflow: hidden; /* Formatação da lista */
 }
 
 #cabecalho1 { /* Cria o cabeçalho da Carteira 1 */
@@ -32,14 +32,14 @@ ul {
   background-color: #803336; /* Cor do plano de fundo do cabeçalho */
 }
 
-li {
-	float: left;
+li { 
+   float: left; /* Posição do li */
 }
 
 li a {
-	display: block;
-  color: white;
-  padding: 14px 16px;
+  display: block; /* Cria um bloco para cada item */
+  color: white; /* Cor da letra */
+  padding: 14px 16px; /* Tmanho do padding */
 }
 
 /* Estilização para mudar de cor quando o cursor passar por cima dos itens do cabeçalho */
@@ -66,9 +66,9 @@ li a {
 
 /* Estilizando o título das Carteiras */
 h1{
-	font-size: 50px;
-	padding-top: 50px;
-  padding-bottom: 20px;
+  font-size: 50px; /* Tamanho da fonte */
+  padding-top: 50px; /* Tamanho da parte de cima do padding */
+  padding-bottom: 20px; /* Tamanho da parte de baixo do padding */
 }
 #titulo1 {
   color: #096E80; /* Cor do título da Carteira 1 */
@@ -92,26 +92,26 @@ h1{
 }
 
 .tables {
-  display: flex;
-  flex-direction: row;
+  display: flex; /* Tipo do display */
+  flex-direction: row; /* Direção do display */
   justify-content: space-around;
 }
 
 .tabelas {
-  margin-top: 5%;
-	display: flex;
-	flex-direction: column;
-  weight: 100px
+  margin-top: 5%; /* Tamanho da parte de cima da margem */
+  display: flex; /* Tipo do display */
+  flex-direction: column; /* Direção do display */
+  weight: 100px /* Largura das tabelas */
 }
 
 div{
-  padding: 20px;
+  padding: 20px; /* Tamanho do padding/ */
 }
 
 /* Estilizando os subtítulos das Carteiras */
 h2{
-  font-size: 32px;
-  margin-bottom: 40px;
+  font-size: 32px; /* Tamanho da fonte */
+  margin-bottom: 40px; /* Tamanho da parte de baixo da margem */
 }
 .subtitulo1{
 	color: #096E80 /* Cor dos subtítulos da Carteira 1 */
@@ -125,8 +125,8 @@ h2{
 
 /* Estilizando as tabelas das Carteiras */
 table{
-	margin-left:auto;
-	margin-right:auto;
+	margin-left:auto; /* Margem da esquerda automática */
+	margin-right:auto; /* Margem da direita automática */
 }
 .borda1{
 	border: 1px solid #096E80; /* Cor da borda da Carteira 1 */
@@ -140,10 +140,10 @@ table{
 
 /* Estilizando os cabeçalhos das tabelas das Carteiras */
 th{
-  height: 40px;
-  width: 200px;
-  vertical-align: center;
-  color: white;
+  height: 40px; /* Tamanho da altura */
+  width: 200px; /* Tamanho da largura */
+  vertical-align: center; /* Alinhamento vertical do texto */
+  color: white; /* Cor do texto */
 }
 .cabecalhotabela1{
 	background-color: #096E80; /* Cor do plano de fundo da Carteira 1 */
@@ -156,10 +156,10 @@ th{
 }
 
 td{
-  height: 30px;
-  width: 150px;
-  vertical-align: center;
-  background-color: white
+  height: 30px; /* Tamanho da altura */
+  width: 150px; /* Tamanho da largura */
+  vertical-align: center; /* Alinhamento vertical do texto */
+  background-color: white /* Cor do texto */
 }
 
 /* Estilização para as palavras mudarem de cor quando o cursor passar por cima das linhas das tabelas */
@@ -173,21 +173,22 @@ td{
   color: #F5B3B3; /* Cor das palavras destacadas da Carteira 3 */
 }
 
+/* Estilização do rodapé */
 footer{
-	padding: 15px;
-  height: 50px;
-	box-sizing: border-box;
-  font-size: 25px;
+  padding: 15px; /* Tamanho do padding */
+  height: 50px; /* Tamanho da altura */
+  box-sizing: border-box; /* Alteração da propriedade padrão da box model, nessa a largura e altura incluem o padding, mas não a margem */
+  font-size: 25px; q* Tamnho da fonte */
 }
 #rodape1{
-	background-color: #096E80;
-	color: #D0E4D5;
+  background-color: #096E80; /* Cor do plano de fundo da carteira 1 */
+  color: #D0E4D5; /* Cor do texto da carteira 1 */
 }
 #rodape2{
-	background-color: #348037;
-	color: #D4FCC5;
+  background-color: #348037; /* Cor do plano de fundo da carteira 2 */
+  color: #D4FCC5; /* Cor do texto da carteira 2 */
 }
 #rodape3{
-	background-color: #803336;
-	color: #FFF1EF;
+  background-color: #803336; /* Cor do plano de fundo da carteira 3 */
+  color: #FFF1EF; /* Cor do texto da carteira 3 */
 }
