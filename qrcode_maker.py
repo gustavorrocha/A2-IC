@@ -22,6 +22,16 @@ def gerar_qrcode(valor, carteira):
     imagem_qrcode = qrcode.make(f"Você tem o equivalente a {valor} reais.") #Esse comando cria um qrcode associado à frase inserida como parâmetro.
     nome = str(carteira)
     imagem_qrcode.save("carteira.png") #Esse comando salva o qrcode como um arquivo png.
+    anexar()
+
+def anexar():
+    wb = load_workbook(filename="bar.xlsx")
+    ws = wb.active
+    img = Image("carteira.png") 
+    img.height = 300
+    img.width = 300 
+    ws.add_image(img, "R2") # “A” representa a coluna e “1” representa a linha em que o canto superior esquerdo da imagem está localizado.
+    wb.save(filename="carteira.xlsx") 
 
 valor_total(robson) #Aqui a função valor_total() é chamada tendo como parâmetro a carteira do Robson.
 
