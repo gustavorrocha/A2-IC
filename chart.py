@@ -38,7 +38,7 @@ for cell in ws.iter_rows(min_row=3,max_row=3,min_col=3,max_col=7,values_only=Tru
     tipos = tipos + cell
 for cell in ws.iter_rows(min_row=10,max_row=10,min_col=3,max_col=5,values_only=True):
     tipos = tipos + cell
-for cell in ws.iter_rows(min_row=5,max_row=5,min_col=3,max_col=7,values_only=True):
+for cell in ws.iter_rows(min_row=6,max_row=6,min_col=3,max_col=7,values_only=True):
     valores = valores + cell
 for cell in ws.iter_rows(min_row=13,max_row=13,min_col=3,max_col=5,values_only=True):
     valores = valores + cell
@@ -125,7 +125,7 @@ c1.y_axis.title = 'Valor'
 c1.x_axis.title = 'Tempo'
 
 tanto = len(ativos)
-data = Reference(ws, min_col=1, min_row=1, max_col=tanto, max_row=14)
+data = Reference(ws_2, min_col=1, min_row=4, max_col=11, max_row=17)
 c1.add_data(data, titles_from_data=True)
 
 ws.add_chart(c1, "A15")
@@ -133,4 +133,3 @@ ws.add_chart(c1, "A15")
 
 #Uma cópia do arquivo com as modificações feitas é criada.
 wb.save("bar.xlsx")
-
