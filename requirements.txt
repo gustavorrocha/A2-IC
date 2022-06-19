@@ -1,0 +1,9 @@
+beautifulsoup4==4.11.1
+lxml==4.8.0
+openpyxl==3.0.10
+requests==2.26.0
+yahooquery==2.2.15
+yfinance==0.1.70
+pandas==1.4.2
+qrcode==7.3.1
+pillow==9.1.0
