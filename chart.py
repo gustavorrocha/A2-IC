@@ -2,16 +2,19 @@
 
 from openpyxl import load_workbook #Essa função será necessária para carregar o workbook gerado anteriormente (no branch DadosExcel).
 from openpyxl.chart import BarChart, Series, Reference, LineChart #Essas funções são necessárias para construir os gráficos.
-from datetime import date, timedelta
-import yfinance as yf
-from datetime import datetime
-import pandas
+from datetime import date, timedelta, datetime #Necessário para definir as variáveis hoje e passado.
+import yfinance as yf #Módulo por meio do qual é pego o histórioco dos ativos.
+import pandas #Necessário na manipulação do histórico, que está em formato dataframe.
 
+# A função a seguir um dataframe relacionado aos dados de um ativo no último ano.
 def gerar(companhia, codigo):
+    #Definimos o ponto de partida e chegada da nossa busca com o datetime. Depois, usamos o yfinance para buscar o histórico da companhia nesse período de tempo e em intervalos de um mês.
     hoje = date.today()
     passado = hoje - timedelta(365)
-    nome = companhia
     y = yf.Ticker(codigo).history(start = passado, end = hoje, interval = "1mo")
+    
+    # Quando encontra uma data com dados faltantes, o yfinance já busca automaticamente outro dia próximo, anexando ambos ao dataframe.
+    # Com os comandos a seguir, são eliminadas do dataframe os dias com dados faltantes, m,antendo-se um registro para cada mês.
     contador = -1
     lista = []
     tam = len(y.index)
@@ -78,6 +81,7 @@ ws.add_chart(chart2, "I18")
 
 #Vamos fazer um gráfico de linhas
 
+#Cada lista a seguir será anexada à planilha como uma nova linha.
 cabecalho = []
 m1 = []
 m2 = []
@@ -92,10 +96,13 @@ m10 = []
 m11 = []
 m12 = []
 m13 = []
+
+# O dicionário ativos contém as informações necessárias para a operação da função gerar().
 ativos = {"Ambev":"ABEV3.SA", "Bancodobrasil":"BBAS3.SA", "B3":"B3SA3.SA", "Cielo":"CIEL3.SA", "Eletrobras":"ELET3.SA", "Fleury":"FLRY3.SA", "Gol":"GOLL4.SA", "Jbs":"JBSS3.SA", "Mrv":"MRVE3.SA", "Petrobras":"PETR3.SA", "Vale":"VALE3.SA"}
 for companhia, codigo in ativos.items():
     x = gerar(companhia, codigo)
     
+    # Para cada ativo seu nome e as informações correspondentes ao seu valos na abertura de cada dia do dataframe são adicionadas às listas. 
     cabecalho.append(companhia)
     m1.append(x.iloc[0,0])
     m2.append(x.iloc[1,0])
@@ -111,24 +118,24 @@ for companhia, codigo in ativos.items():
     m12.append(x.iloc[11,0])
     m13.append(x.iloc[12,0])
 
+# É criada uma tupla contendo as listas anteriores e uma lista vazia, que dará um espaço entre as informações já presentes na planilha e as que serão inclusas. Cada lista é incluída na planilha como uma linha nova.
 linhas = (["","",""], cabecalho, m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11, m12, m13)
 print(linhas)
 for novo in linhas:
     ws_2.append(novo)
-c1 = LineChart()
 
-c1.width = 13
-c1.height = 8
-c1.title = "Evolução do valor dos ativos"
-c1.style = 13
-c1.y_axis.title = 'Valor'
-c1.x_axis.title = 'Tempo'
-
+A seguir é criado um gráfico de linha a partir dos dados coletados com o yfinance.
+chart3 = LineChart()
+chart3.width = 13
+chart3.height = 8
+chart3.title = "Evolução do valor dos ativos"
+chart3.style = 13
+chart3.y_axis.title = 'Valor'
+chart3.x_axis.title = 'Tempo'
 tanto = len(ativos)
 data = Reference(ws_2, min_col=1, min_row=4, max_col=11, max_row=17)
-c1.add_data(data, titles_from_data=True)
-
-ws.add_chart(c1, "A15")
+chart3.add_data(data, titles_from_data=True)
+ws.add_chart(chart3, "A15")
 
 
 #Uma cópia do arquivo com as modificações feitas é criada.
